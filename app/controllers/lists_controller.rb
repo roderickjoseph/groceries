@@ -1,4 +1,6 @@
 class ListsController < ApplicationController
+  before_action :authenticate_user!, only: %i[new create]
+
   def index
   end
 
@@ -7,7 +9,7 @@ class ListsController < ApplicationController
   end
 
   def create
-    @list = List.create(list_params)
+    @list = current_user.lists.create(list_params)
     if @list.valid?
       redirect_to root_path
     else
@@ -20,5 +22,4 @@ class ListsController < ApplicationController
   def list_params
     params.require(:list).permit(:title)
   end
-
 end
