@@ -23,5 +23,11 @@ RSpec.describe ListsController, type: :controller do
       list = List.last
       expect(list.title).to eq('Test')
     end
+
+    it 'should properly deal with validation errors' do
+      post :create, params: { list: { title: '' } }
+      expect(response).to have_http_status(:unprocessable_entity)
+      expect(List.count).to eq 0
+    end
   end
 end
