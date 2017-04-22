@@ -14,11 +14,7 @@ RSpec.describe ListsController, type: :controller do
       expect(response).to redirect_to new_user_session_path
     end
     it 'should successfuly show the new form' do
-      user = User.create(
-        email:                 'test@gmail.com',
-        password:              'testPassword',
-        password_confirmation: 'testPassword'
-      )
+      user = FactoryGirl.create(:user)
       sign_in user
 
       get :new
@@ -33,11 +29,7 @@ RSpec.describe ListsController, type: :controller do
     end
 
     it 'should successfully create a new list in our database' do
-      user = User.create(
-        email:                 'test@gmail.com',
-        password:              'testPassword',
-        password_confirmation: 'testPassword'
-      )
+      user = FactoryGirl.create(:user)
       sign_in user
 
       post :create, params: { list: { title: 'Test' } }
@@ -49,11 +41,7 @@ RSpec.describe ListsController, type: :controller do
     end
 
     it 'should properly deal with validation errors' do
-      user = User.create(
-        email:                 'test@gmail.com',
-        password:              'testPassword',
-        password_confirmation: 'testPassword'
-      )
+      user = FactoryGirl.create(:user)
       sign_in user
 
       post :create, params: { list: { title: '' } }
