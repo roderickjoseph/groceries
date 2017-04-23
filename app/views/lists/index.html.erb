@@ -1,1 +1,12 @@
-<h1>List</h1>
+<h1>Lists</h1>
+<%= link_to 'Add new list', new_list_path %>
+<hr>
+<div class="row">
+  <% @lists.rank(:row_order).each do |list| %>
+    <div class="col-12 text-center list">
+      <h2>
+        <%= link_to list.title, list_path(list) %>
+      </h2>
+    </div>
+  <% end %>
+</div>

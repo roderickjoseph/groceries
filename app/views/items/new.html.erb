@@ -1,0 +1,5 @@
+<h1>Add an item</h1>
+<%= simple_form_for @item, url: list_items_path do |f| %>
+  <%= f.input :name %>
+  <%= f.submit 'Add' %>
+<% end %>

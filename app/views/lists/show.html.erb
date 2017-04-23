@@ -1,0 +1,11 @@
+
+<h1><%= @list.title %></h1>
+<%= link_to 'Add an item', new_list_item_path(@list.id) %>
+<hr>
+<div class="row">
+  <% current_list.items.rank(:row_order).each do |item| %>
+    <div class="col-12 text-center">
+      <%= item.name %>
+    </div>
+  <% end %>
+</div>
